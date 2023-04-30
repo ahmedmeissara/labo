@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://labo-hs5apkmtz-ahmedmeissara-gmailcom.vercel.app/";
 
 // Get all specimens
 export const getSpecimens = async () => {
