@@ -1,4 +1,4 @@
-const BASE_URL = "https://labo-hs5apkmtz-ahmedmeissara-gmailcom.vercel.app/";
+const BASE_URL = "https://labo-jet.vercel.app/";
 
 // Get all specimens
 export const getSpecimens = async () => {
