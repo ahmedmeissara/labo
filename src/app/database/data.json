@@ -1,0 +1,16 @@
+[{
+    "numero_inventaire": "INV-1234",
+    "nom_commun": "Chêne",
+    "famille": "Fagaceae",
+    "genre": "Quercus",
+    "sous_genre": "Quercus",
+    "espece_et_sous_especes": "Quercus robur L.",
+    "auteurs": "Linnaeus",
+    "collecteurs_et_legataires": "John Doe",
+    "date_collecte": "2022-03-15",
+    "localite": "Forest of Dean, Gloucestershire, UK",
+    "sexe": "Unknown",
+    "etat_de_conservation": "Good",
+    "nombre_especes": 1,
+    "remarques": "Large tree, estimated height of 20 meters"
+}]
