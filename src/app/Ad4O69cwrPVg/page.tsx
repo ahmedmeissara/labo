@@ -1,10 +1,12 @@
 "use client"; // this is a client component 👈🏽
-
 import { useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import Table from "../table/page";
 import Form from "../form/page";
 import { BiX, BiCheck } from 'react-icons/bi';
+
+
+
 
 export default function Admin() {
   const router = useRouter();
@@ -25,6 +27,8 @@ export default function Admin() {
         </h1>
         {/* collapsable form */}
         <div className="container mx-auto">
+       
+
           <Form></Form>
         </div>
 
