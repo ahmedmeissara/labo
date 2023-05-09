@@ -1,5 +1,7 @@
 "use client"; // this is a client component 👈🏽
-
+import { ReactNode } from 'react';
+import {SessionProvider} from "next-auth/react"
+import AppBar from './Appbar';
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import './globals.css';
@@ -10,12 +12,15 @@ import { Provider } from 'react-redux';
 const queryClient = new QueryClient();
 
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children}: { children: React.ReactNode },{session}:any) {
   return (
+    
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-      <html lang="en">
-        <body>{children}</body>
+      <html lang="en"> 
+        <body>
+        <AppBar></AppBar>
+          {children}</body>
       </html>
       </Provider>
     </QueryClientProvider>
