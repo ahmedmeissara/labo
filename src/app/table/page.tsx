@@ -1,4 +1,3 @@
-"use client"; // this is a client component 👈🏽
 import { BiEdit, BiTrashAlt } from "react-icons/bi";
 import { getSpecimens } from "../../../lib/helper";
 import { useQuery } from "react-query";
@@ -13,6 +12,8 @@ export default function SpecimenTable() {
   if (isError) return <div>Got error: {error}</div>;
 
   return (
+    <div style={{ overflowX: "auto" }}>
+
     <table className="border min-w-full table-auto">
       <thead>
         
@@ -71,6 +72,8 @@ export default function SpecimenTable() {
         ))}
       </tbody>
     </table>
+    </div >
+
   );
 }
 
