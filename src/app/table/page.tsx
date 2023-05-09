@@ -1,3 +1,4 @@
+"use client"; // this is a client component 👈🏽
 import { BiEdit, BiTrashAlt } from "react-icons/bi";
 import { getSpecimens } from "../../../lib/helper";
 import { useQuery } from "react-query";
