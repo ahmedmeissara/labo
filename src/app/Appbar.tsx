@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const fetchUser = async (username:any, password:any) => {
-  
+const fetchUser = async (username: any, password: any) => {
   const res = await fetch("/api/users", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -19,13 +18,14 @@ const fetchUser = async (username:any, password:any) => {
 };
 
 const Navbar = () => {
-  const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+  const token =
+    typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const { data: user, isLoading, isError, error, refetch }:any = useQuery(
+  const { data: user, isLoading, isError, error, refetch }: any = useQuery(
     ["users", username, password],
     () => fetchUser(username, password),
     {
@@ -33,47 +33,40 @@ const Navbar = () => {
     }
   );
 
-  const handleLogin = async (e:any) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
       const user = await refetch();
       localStorage.setItem("token", user.token); // Store token in localStorage
-      router.push("/Ad4O69cwrPVg");
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
   };
-  
-const handleLogout = () => {
-  localStorage.removeItem("token"); // Remove token from localStorage
-  router.push("/");
-  setUsername("");
-  setPassword("");
-};
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove token from localStorage
+    router.push("/");
+    setUsername("");
+    setPassword("");
+  };
 
-const isLoggedIn = !!token;
-
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError) {
-    return <p>{error.message}</p>;
-  }
+  const isLoggedIn = !!token;
 
   return (
-<nav className="bg-gray-800 rounded-md px-4 py-2 text-sm">
+    <nav className="bg-gray-800 rounded-md px-4 py-2 text-sm">
       <ul className="flex justify-between items-center px-4 py-3">
         <li>
-          <Link href="/" className="text-gray-200 font-bold">Home
+          <Link href="/" className="text-gray-200 font-bold">
+            Home
           </Link>
         </li>
         {isLoggedIn && user ? (
           <>
             <li>
-              <Link href="/Ad4O69cwrPVg" className="text-gray-200 mx-4">Admin</Link>
+              <Link href="/Ad4O69cwrPVg" className="text-gray-200 mx-4">
+                Admin
+              </Link>
             </li>
             <li>
               <span className="text-gray-200">{user.name}</span>
@@ -117,9 +110,19 @@ const isLoggedIn = !!token;
             </li>
           </form>
         )}
-      </ul>
-    </nav>
-  );
+       </ul>
+  {isLoading && (
+    <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
+      <p className="text-gray-200 font-bold">Loading...</p>
+    </div>
+  )}
+  {isError && (
+    <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
+      <p className="text-red-500 font-bold">{error.message}</p>
+    </div>
+  )}
+</nav>
+);
 };
 
 export default Navbar;
