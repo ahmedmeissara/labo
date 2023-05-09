@@ -54,74 +54,75 @@ const Navbar = () => {
   const isLoggedIn = !!token;
 
   return (
-    <nav className="bg-gray-800 rounded-md px-4 py-2 text-sm">
-      <ul className="flex justify-between items-center px-4 py-3">
+<nav className="bg-gray-800 rounded-md px-4 py-2 text-sm">
+  <ul className="flex justify-between items-center px-4 py-3">
+    <li>
+      <Link href="/" className="text-gray-200 font-bold">
+        Home
+      </Link>
+    </li>
+    {isLoggedIn && user ? (
+      <>
         <li>
-          <Link href="/" className="text-gray-200 font-bold">
-            Home
+          <Link href="/Ad4O69cwrPVg" className="text-gray-200 mx-4">
+            Admin
           </Link>
         </li>
-        {isLoggedIn && user ? (
-          <>
-            <li>
-              <Link href="/Ad4O69cwrPVg" className="text-gray-200 mx-4">
-                Admin
-              </Link>
-            </li>
-            <li>
-              <span className="text-gray-200">{user.name}</span>
-            </li>
-            <li>
-              <button
-                className="text-gray-200 hover:text-white"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </li>
-          </>
-        ) : (
-          <form onSubmit={handleLogin} className="flex">
-            <li>
-              <input
-                type="text"
-                placeholder="Username"
-                className="bg-gray-700 text-gray-200 rounded-l-md px-3 py-2 focus:outline-none focus:bg-gray-600"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </li>
-            <li>
-              <input
-                type="password"
-                placeholder="Password"
-                className="bg-gray-700 text-gray-200 rounded-r-md px-3 py-2 focus:outline-none focus:bg-gray-600"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </li>
-            <li>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md"
-              >
-                Login
-              </button>
-            </li>
-          </form>
-        )}
-       </ul>
+        <li>
+          <span className="text-gray-200">{user.name}</span>
+        </li>
+        <li>
+          <button
+            className="text-gray-200 hover:text-white"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </li>
+      </>
+    ) : (
+      <form onSubmit={handleLogin} className="flex">
+        <li>
+          <input
+            type="text"
+            placeholder="Username"
+            className="bg-gray-700 text-gray-200 rounded-l-md px-3 py-2 focus:outline-none focus:bg-gray-600 sm:w-32 md:w-48 lg:w-64"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </li>
+        <li>
+          <input
+            type="password"
+            placeholder="Password"
+            className="bg-gray-700 text-gray-200 rounded-r-md px-3 py-2 focus:outline-none focus:bg-gray-600 sm:w-32 md:w-48 lg:w-64"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </li>
+        <li>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md"
+          >
+            Login
+          </button>
+        </li>
+      </form>
+    )}
+  </ul>
   {isLoading && (
-    <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <p className="text-gray-200 font-bold">Loading...</p>
     </div>
   )}
   {isError && (
-    <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <p className="text-red-500 font-bold">{error.message}</p>
     </div>
   )}
 </nav>
+
 );
 };
 
