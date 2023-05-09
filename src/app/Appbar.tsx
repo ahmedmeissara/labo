@@ -26,8 +26,13 @@ const Navbar = () => {
   useEffect(() => {
     const token =
       typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
-    setIsLoggedIn(!!token);
+  
+    if (token) {
+      setIsLoggedIn(true);
+      router.push("/");
+    }
   }, []);
+  
 
   const { data: user, isLoading, isError, error, refetch }: any = useQuery(
     ["users", username, password],
