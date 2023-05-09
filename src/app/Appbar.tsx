@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -18,12 +18,16 @@ const fetchUser = async (username: any, password: any) => {
 };
 
 const Navbar = () => {
-  const token =
-    typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const token =
+      typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
+    setIsLoggedIn(!!token);
+  }, []);
 
   const { data: user, isLoading, isError, error, refetch }: any = useQuery(
     ["users", username, password],
@@ -38,6 +42,7 @@ const Navbar = () => {
     try {
       const user = await refetch();
       localStorage.setItem("token", user.token); // Store token in localStorage
+      setIsLoggedIn(true);
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -46,12 +51,11 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage
+    setIsLoggedIn(false);
     router.push("/");
     setUsername("");
     setPassword("");
   };
-
-  const isLoggedIn = !!token;
 
   return (
 <nav className="bg-gray-800 rounded-md px-4 py-2 text-sm">
