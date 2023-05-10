@@ -21,20 +21,20 @@ export default function SpecimenTable() {
 
     // Define header row
     const headerRow = worksheet.addRow([
-      "Numero Inventaire",
-      "Nom Commun",
-      "Famille",
-      "Genre",
-      "Sous-Genre",
-      "Espece et Sous-Especes",
-      "Auteurs",
-      "Collecteurs et Legataires",
-      "Date Collecte",
-      "Localite",
-      "Sexe",
-      "Etat de Conservation",
-      "Nombre Especes",
-      "Remarques",
+      "numero_inventaire",
+      "nom_commun",
+      "famille",
+      "genre",
+      "sous_genre",
+      "espece_et_sous_especes",
+      "auteurs",
+      "collecteurs_et_legataires",
+      "date_collecte",
+      "localite",
+      "sexe",
+      "etat_de_conservation",
+      "nombre_especes",
+      "remarques",
     ]);
     headerRow.eachCell((cell) => {
       cell.fill = {
@@ -79,6 +79,7 @@ worksheet.columns.forEach((column) => {
       saveAs(new Blob([buffer]), "specimens.xlsx");
     });
   };
+  
 
   if (isLoading) return <div>Specimens are loading...</div>;
   if (isError) return <div>Got error: {error}</div>;
@@ -150,7 +151,9 @@ worksheet.columns.forEach((column) => {
         ))}
       </tbody>
     </table>
+    
     </div >
+    
 
   );
   

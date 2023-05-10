@@ -21,14 +21,13 @@ export default function Admin() {
 
   return (
     <section>
+
       <main className="py-5">
         <h1 className="bg- text-xl md:text-5xl text-center font-bold py-10">
           Labo Management
         </h1>
         {/* collapsable form */}
         <div className="container mx-auto">
-       
-
           <Form></Form>
         </div>
 
